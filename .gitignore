@@ -1,0 +1,92 @@
+# OS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Editors / IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.sublime-workspace
+
+# Secrets / environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# Logs / temp
+*.log
+logs/
+tmp/
+temp/
+*.tmp
+*.bak
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.coverage
+htmlcov/
+build/
+dist/
+
+# Node
+node_modules/
+npm-debug.log*
+yarn-error.log*
+.next/
+.cache/
+
+# Java / C / C++
+*.class
+*.jar
+*.o
+*.obj
+*.so
+*.dylib
+*.exe
+*.out
+target/
+
+# R
+.Rhistory
+.RData
+.Rproj.user/
+
+# Database files
+*.sqlite
+*.sqlite3
+*.db
+
+# LaTeX build artifacts
+*.aux
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.toc
+
+# Claude Code local settings
+.claude/settings.local.json
+
+# Next.js / Vercel
+next-env.d.ts
+*.tsbuildinfo
+.vercel/

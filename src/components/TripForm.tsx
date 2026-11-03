@@ -33,8 +33,8 @@ export function TripForm({ heading, submitLabel, busyLabel, onSubmit }: Props) {
   }
 
   return (
-    <section aria-labelledby="trip-form-heading">
-      <h2 id="trip-form-heading" className="text-lg font-semibold">{heading}</h2>
+    <section aria-labelledby="trip-form-heading" className="card p-5">
+      <h2 id="trip-form-heading" className="text-lg font-bold">{heading}</h2>
       <div className="mt-3 space-y-4">
         <StationPicker
           label="Pick up a bike at"
@@ -54,11 +54,11 @@ export function TripForm({ heading, submitLabel, busyLabel, onSubmit }: Props) {
           type="button"
           onClick={submit}
           disabled={!origin || busy}
-          className="rounded-md bg-zinc-900 px-4 py-2 text-sm font-medium text-white disabled:opacity-40 dark:bg-zinc-100 dark:text-zinc-900"
+          className="btn-primary"
         >
           {busy ? busyLabel : submitLabel}
         </button>
-        {error && <p role="alert" className="text-sm text-red-600 dark:text-red-400">{error}</p>}
+        {error && <p role="alert" className="text-sm text-red-700 dark:text-red-400">{error}</p>}
       </div>
     </section>
   );

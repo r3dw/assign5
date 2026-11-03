@@ -3,6 +3,7 @@
 import type { StationStatus } from "@/lib/liveStatus";
 import { parseTime } from "@/lib/time";
 import { ago } from "@/lib/useNow";
+import { BikeMark } from "./BikeSketch";
 
 type Props = {
   origin: string;
@@ -14,13 +15,23 @@ type Props = {
   onRemove: () => void;
 };
 
+/** A docking post, for the "Drop off" label. */
+function DockMark({ className = "" }: { className?: string }) {
+  return (
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true" focusable="false" className={className}>
+      <rect x="5" y="3" width="14" height="18" rx="2" />
+      <path d="M9 8h6M9 12h6" />
+    </svg>
+  );
+}
+
 /** A number that briefly highlights when its station has just changed. */
 function Figure({ value, changedAt, now }: { value: number; changedAt: string; now: number }) {
   const justChanged = now - parseTime(changedAt) < 5000;
   return (
     <span
-      className={`inline-block rounded px-1.5 text-2xl font-semibold tabular-nums transition-colors duration-1000 ${
-        justChanged ? "bg-amber-300/30" : "bg-transparent"
+      className={`inline-block rounded-md px-2 text-4xl font-bold tabular-nums leading-tight transition-colors duration-1000 ${
+        justChanged ? "bg-sky/30" : "bg-transparent"
       }`}
     >
       {value}
@@ -43,7 +54,7 @@ function Side({
 }) {
   let body: React.ReactNode;
   if (!status) {
-    body = <p className="text-zinc-500">Loading…</p>;
+    body = <p className="text-muted">Loading…</p>;
   } else {
     const count = kind === "bikes" ? status.bikes_available : status.docks_available;
     const closed = kind === "bikes" ? !status.is_renting : !status.is_returning;
@@ -56,25 +67,28 @@ function Side({
       <>
         <p>
           <Figure value={count} changedAt={status.updated_at} now={now} />{" "}
-          <span className="text-zinc-500">{kind === "bikes" ? "bikes" : "open docks"}</span>
+          <span className="text-muted">{kind === "bikes" ? "bikes" : "open docks"}</span>
           {kind === "bikes" && status.ebikes_available > 0 && (
-            <span className="text-zinc-500"> ({status.ebikes_available} electric)</span>
+            <span className="text-muted"> ({status.ebikes_available} electric)</span>
           )}
         </p>
         {warning && (
-          <p role="status" className={count === 0 || closed ? "font-medium text-red-600 dark:text-red-400" : "text-amber-700 dark:text-amber-400"}>
+          <p role="status" className={count === 0 || closed ? "font-semibold text-red-700 dark:text-red-400" : "font-medium text-amber-700 dark:text-amber-400"}>
             {warning}
           </p>
         )}
-        <p className="text-xs text-zinc-500">Changed {ago(parseTime(status.updated_at), now)}</p>
+        <p className="text-xs text-muted">Changed {ago(parseTime(status.updated_at), now)}</p>
       </>
     );
   }
 
   return (
     <div className="space-y-1">
-      <p className="text-xs uppercase tracking-wide text-zinc-500">{heading}</p>
-      <p className="font-medium">{name}</p>
+      <p className="flex items-center gap-1.5 text-xs font-bold uppercase tracking-wider text-brand">
+        {kind === "bikes" ? <BikeMark className="h-4 w-6" /> : <DockMark className="h-4 w-4" />}
+        {heading}
+      </p>
+      <p className="font-semibold">{name}</p>
       {body}
     </div>
   );
@@ -82,21 +96,21 @@ function Side({
 
 export function TripCard({ origin, destination, originStatus, destinationStatus, now, removeLabel, onRemove }: Props) {
   return (
-    <li className="rounded-md border border-zinc-200 p-4 text-sm dark:border-zinc-800">
-      <div className="grid gap-4 sm:grid-cols-2">
+    <li className="card border-l-4 border-l-sky p-5 text-sm">
+      <div className="grid gap-5 sm:grid-cols-2">
         <Side heading="Pick up" name={origin} status={originStatus} now={now} kind="bikes" />
         {destination ? (
           <Side heading="Drop off" name={destination} status={destinationStatus} now={now} kind="docks" />
         ) : (
-          <p className="self-center text-zinc-500">No destination chosen.</p>
+          <p className="self-center text-muted">No destination chosen.</p>
         )}
       </div>
-      <div className="mt-3 text-right">
+      <div className="mt-4 text-right">
         <button
           type="button"
           onClick={onRemove}
           aria-label={`${removeLabel} the trip from ${origin}`}
-          className="text-zinc-500 underline hover:text-zinc-800 dark:hover:text-zinc-200"
+          className="link-quiet"
         >
           Remove
         </button>

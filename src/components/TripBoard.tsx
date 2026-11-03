@@ -41,13 +41,13 @@ export function TripBoard({ heading, trips, loadError, emptyText, removeLabel, o
 
   return (
     <section aria-labelledby="board-heading">
-      <h2 id="board-heading" className="text-lg font-semibold">{heading}</h2>
+      <h2 id="board-heading" className="text-lg font-bold">{heading}</h2>
       <div className="mt-3">
         <FreshnessBanner freshness={fresh} connection={connection} now={now} />
       </div>
-      {loadError && <p role="alert" className="mt-3 text-sm text-red-600 dark:text-red-400">Could not load your trips: {loadError}</p>}
-      {!loadError && trips === null && <p className="mt-3 text-sm text-zinc-500">Loading your trips…</p>}
-      {trips?.length === 0 && <p className="mt-3 text-sm text-zinc-500">{emptyText}</p>}
+      {loadError && <p role="alert" className="mt-3 text-sm text-red-700 dark:text-red-400">Could not load your trips: {loadError}</p>}
+      {!loadError && trips === null && <p className="mt-3 text-sm text-muted">Loading your trips…</p>}
+      {trips?.length === 0 && <p className="mt-3 text-sm text-muted">{emptyText}</p>}
       <ul className={`mt-3 space-y-3 transition-opacity ${dim ? "opacity-60" : ""}`} aria-label={heading}>
         {trips?.map((t) => (
           <TripCard

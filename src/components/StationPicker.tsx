@@ -50,8 +50,8 @@ export function StationPicker({ label, hint, value, onChange, excludeId }: Props
   if (value) {
     return (
       <div>
-        <span className="block text-sm font-medium">{label}</span>
-        <div className="mt-1 flex items-center justify-between rounded-md border border-zinc-300 px-3 py-2 text-sm dark:border-zinc-700">
+        <span className="block text-sm font-semibold">{label}</span>
+        <div className="mt-1 flex items-center justify-between rounded-lg border border-sky bg-sky/10 px-3 py-2 text-sm">
           <span>{value.name}</span>
           <button
             type="button"
@@ -59,7 +59,7 @@ export function StationPicker({ label, hint, value, onChange, excludeId }: Props
               onChange(null);
               setText("");
             }}
-            className="text-zinc-500 underline hover:text-zinc-800 dark:hover:text-zinc-200"
+            className="link-quiet"
           >
             Change
           </button>
@@ -70,7 +70,7 @@ export function StationPicker({ label, hint, value, onChange, excludeId }: Props
 
   return (
     <div>
-      <label htmlFor={inputId} className="block text-sm font-medium">
+      <label htmlFor={inputId} className="block text-sm font-semibold">
         {label}
       </label>
       <input
@@ -81,13 +81,13 @@ export function StationPicker({ label, hint, value, onChange, excludeId }: Props
         placeholder={hint}
         autoComplete="off"
         aria-controls={listId}
-        className="mt-1 w-full rounded-md border border-zinc-300 bg-transparent px-3 py-2 text-sm dark:border-zinc-700"
+        className="field mt-1"
       />
       <ul id={listId} className="mt-1 text-sm" aria-live="polite">
-        {error && <li className="px-3 py-2 text-red-600 dark:text-red-400">Could not search: {error}</li>}
-        {searching && <li className="px-3 py-2 text-zinc-500">Searching…</li>}
+        {error && <li className="px-3 py-2 text-red-700 dark:text-red-400">Could not search: {error}</li>}
+        {searching && <li className="px-3 py-2 text-muted">Searching…</li>}
         {!searching && !error && query.length >= 2 && results.length === 0 && (
-          <li className="px-3 py-2 text-zinc-500">No stations match “{query}”.</li>
+          <li className="px-3 py-2 text-muted">No stations match “{query}”.</li>
         )}
         {results.map((s) => (
           <li key={s.station_id}>
@@ -97,7 +97,7 @@ export function StationPicker({ label, hint, value, onChange, excludeId }: Props
                 onChange(s);
                 setText("");
               }}
-              className="w-full rounded-md px-3 py-2 text-left hover:bg-zinc-100 dark:hover:bg-zinc-800"
+              className="w-full rounded-lg px-3 py-2 text-left hover:bg-sky/15"
             >
               {s.name}
             </button>

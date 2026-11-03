@@ -99,6 +99,15 @@ The Supabase secret (service role) key is never in this repo or on Vercel. Supab
 | `npm run lint` | ESLint |
 | `npm run build` | Production build, including the TypeScript check |
 
+## Design
+
+- **Colours:** the Chicago flag's sky blue and red, with a deeper blue for buttons and links so white text on them stays readable. The header carries the flag's two blue stripes with red six-pointed stars, and faint line-drawn bicycles sit behind the page. Light and dark themes follow the system setting.
+- **Live data needs clear states.** Fresh, stale and down each have their own wording and icon, and the cards dim when the numbers may be old, so a stale number never looks as trustworthy as a live one. A number that has just changed is highlighted for five seconds, so a change catches the eye.
+- **Colour is never the only signal.** Every state and warning also has words or an icon ("▲ These numbers may be out of date", "No open docks. The station is full.").
+- **Contrast:** every text and background pair in both themes was checked against the WCAG AA standard (4.5:1). The lowest in light mode is the amber warning, at 5.0:1.
+- **Keyboard:** controls keep a visible focus outline, and the station search is a normal labelled field with buttons for its results.
+- **Phones:** cards stack on narrow screens and the header fits at 390 px (checked by calculation and at 500 px; a real phone has not been tried).
+
 ## Tests: what they check, and what they do not
 
 All 36 run offline in under a second.

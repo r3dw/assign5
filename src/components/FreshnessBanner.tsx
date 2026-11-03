@@ -20,7 +20,7 @@ export function FreshnessBanner({ freshness: f, connection, now }: Props) {
 
   switch (f.state) {
     case "loading":
-      tone = "border-zinc-300 text-zinc-500 dark:border-zinc-700";
+      tone = "border-line bg-surface text-muted";
       icon = "…";
       title = "Checking that the data is current…";
       break;

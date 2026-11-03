@@ -1,10 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { freshness } from "@/lib/freshness";
+import { useLatestRun } from "@/lib/latestRun";
 import { useLiveStatus } from "@/lib/liveStatus";
 import { stationNames, type Station } from "@/lib/stations";
 import { useSupabase } from "@/lib/supabase";
 import { useNow } from "@/lib/useNow";
+import { FreshnessBanner } from "./FreshnessBanner";
 import { StationPicker } from "./StationPicker";
 import { TripCard } from "./TripCard";
 
@@ -17,7 +20,11 @@ export function Trips() {
 
   const now = useNow(1000);
   const watched = (trips ?? []).flatMap((t) => (t.destinationId ? [t.originId, t.destinationId] : [t.originId]));
-  const { status, connection } = useLiveStatus(watched);
+  const { status, connection: statusConnection } = useLiveStatus(watched);
+  const { run, connection: runConnection } = useLatestRun();
+  const fresh = freshness(run, now);
+  const connection = statusConnection === "offline" || runConnection === "offline" ? "offline" : statusConnection;
+  const dim = fresh.state === "stale" || fresh.state === "down";
 
   const [origin, setOrigin] = useState<Station | null>(null);
   const [destination, setDestination] = useState<Station | null>(null);
@@ -123,20 +130,16 @@ export function Trips() {
       </section>
 
       <section aria-labelledby="my-trips">
-        <div className="flex items-baseline justify-between">
-          <h2 id="my-trips" className="text-lg font-semibold">Your trips</h2>
-          {trips && trips.length > 0 && (
-            <span className="text-xs text-zinc-500" role="status">
-              {connection === "live" ? "● Live" : connection === "connecting" ? "Connecting…" : "Reconnecting…"}
-            </span>
-          )}
+        <h2 id="my-trips" className="text-lg font-semibold">Your trips</h2>
+        <div className="mt-3">
+          <FreshnessBanner freshness={fresh} connection={connection} now={now} />
         </div>
         {loadError && <p role="alert" className="mt-3 text-sm text-red-600 dark:text-red-400">Could not load your trips: {loadError}</p>}
         {!loadError && trips === null && <p className="mt-3 text-sm text-zinc-500">Loading your trips…</p>}
         {trips?.length === 0 && (
           <p className="mt-3 text-sm text-zinc-500">You are not following any trips yet. Add one above.</p>
         )}
-        <ul className="mt-3 space-y-3">
+        <ul className={`mt-3 space-y-3 transition-opacity ${dim ? "opacity-60" : ""}`} aria-label="Your followed trips">
           {trips?.map((t) => (
             <TripCard
               key={t.id}

@@ -60,10 +60,10 @@ A follow is a trip, not just one station.
 
 | State | When | What the user sees |
 | --- | --- | --- |
-| Loading | Before the first data arrives | Skeleton cards |
-| Fresh | The last run succeeded and was recent | Live data with "updated N seconds ago" |
-| Stale | The newest successful run is older than a few missed runs (for example more than 2 minutes) | Data stays visible but is dimmed, with a clear "last updated" notice |
-| Down | The worker's most recent run failed | A banner saying the feed is down and the data is the last known good |
+| Loading | The run log has not loaded yet | "Checking that the data is current…" |
+| Fresh | The last run succeeded within 2 minutes | Green "Live" with "Checked N s ago" |
+| Stale | The newest successful run is older than 2 minutes (four missed runs), or there are none | Amber banner with the last check time; the cards dim |
+| Down | The worker's most recent run failed | Red banner with the error; the cards dim and show the last known numbers |
 
 A quiet feed is not stale. If runs keep succeeding but no stations change, the page stays fresh because freshness comes from `worker_runs`, not from the station data.
 

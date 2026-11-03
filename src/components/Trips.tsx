@@ -1,9 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useLiveStatus } from "@/lib/liveStatus";
 import { stationNames, type Station } from "@/lib/stations";
 import { useSupabase } from "@/lib/supabase";
+import { useNow } from "@/lib/useNow";
 import { StationPicker } from "./StationPicker";
+import { TripCard } from "./TripCard";
 
 type Trip = { id: string; originId: string; destinationId: string | null; origin: string; destination: string | null };
 
@@ -11,6 +14,10 @@ export function Trips() {
   const supabase = useSupabase();
   const [trips, setTrips] = useState<Trip[] | null>(null);
   const [loadError, setLoadError] = useState<string | null>(null);
+
+  const now = useNow(1000);
+  const watched = (trips ?? []).flatMap((t) => (t.destinationId ? [t.originId, t.destinationId] : [t.originId]));
+  const { status, connection } = useLiveStatus(watched);
 
   const [origin, setOrigin] = useState<Station | null>(null);
   const [destination, setDestination] = useState<Station | null>(null);
@@ -116,7 +123,14 @@ export function Trips() {
       </section>
 
       <section aria-labelledby="my-trips">
-        <h2 id="my-trips" className="text-lg font-semibold">Your trips</h2>
+        <div className="flex items-baseline justify-between">
+          <h2 id="my-trips" className="text-lg font-semibold">Your trips</h2>
+          {trips && trips.length > 0 && (
+            <span className="text-xs text-zinc-500" role="status">
+              {connection === "live" ? "● Live" : connection === "connecting" ? "Connecting…" : "Reconnecting…"}
+            </span>
+          )}
+        </div>
         {loadError && <p role="alert" className="mt-3 text-sm text-red-600 dark:text-red-400">Could not load your trips: {loadError}</p>}
         {!loadError && trips === null && <p className="mt-3 text-sm text-zinc-500">Loading your trips…</p>}
         {trips?.length === 0 && (
@@ -124,20 +138,15 @@ export function Trips() {
         )}
         <ul className="mt-3 space-y-3">
           {trips?.map((t) => (
-            <li key={t.id} className="flex items-start justify-between gap-4 rounded-md border border-zinc-200 p-4 text-sm dark:border-zinc-800">
-              <div>
-                <p><span className="text-zinc-500">From</span> <strong>{t.origin}</strong></p>
-                <p><span className="text-zinc-500">To</span> {t.destination ? <strong>{t.destination}</strong> : <em className="text-zinc-500">no destination</em>}</p>
-              </div>
-              <button
-                type="button"
-                onClick={() => remove(t.id)}
-                aria-label={`Stop following the trip from ${t.origin}`}
-                className="text-zinc-500 underline hover:text-zinc-800 dark:hover:text-zinc-200"
-              >
-                Remove
-              </button>
-            </li>
+            <TripCard
+              key={t.id}
+              origin={t.origin}
+              destination={t.destination}
+              originStatus={status.get(t.originId)}
+              destinationStatus={t.destinationId ? status.get(t.destinationId) : undefined}
+              now={now}
+              onRemove={() => remove(t.id)}
+            />
           ))}
         </ul>
       </section>

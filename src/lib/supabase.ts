@@ -22,12 +22,36 @@ let currentSession: ClerkSession = null;
  * template is needed: Clerk's own session token is accepted as is.
  */
 let client: SupabaseClient | undefined;
+let lastToken: string | null | undefined;
+
+/** Fetches Clerk's token and logs only whether it changed or went missing, never the token itself. */
+async function clerkToken(): Promise<string | null> {
+  let token: string | null = null;
+  try {
+    token = (await currentSession?.getToken()) ?? null;
+  } catch (e) {
+    console.warn(`[auth] Clerk getToken threw at ${new Date().toLocaleTimeString()}`, e);
+  }
+  if (token !== lastToken) {
+    if (!token) console.warn(`[auth] no token from Clerk at ${new Date().toLocaleTimeString()}`);
+    else {
+      try {
+        const exp = JSON.parse(atob(token.split(".")[1].replace(/-/g, "+").replace(/_/g, "/"))).exp as number;
+        console.info(`[auth] new token at ${new Date().toLocaleTimeString()}, valid for ${Math.round(exp - Date.now() / 1000)} s`);
+      } catch {
+        console.info(`[auth] new token at ${new Date().toLocaleTimeString()}`);
+      }
+    }
+    lastToken = token;
+  }
+  return token;
+}
 
 // Created on first use, not when this file is imported, so building or prerendering the
 // page never needs the Supabase keys. Only signed-in components in the browser call it.
 function getClient(): SupabaseClient {
   client ??= createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
-    accessToken: async () => (await currentSession?.getToken()) ?? null,
+    accessToken: clerkToken,
     // Browsers throttle timers in background tabs, which can delay the websocket's
     // keep-alive pings until the server closes the connection. A Web Worker's timers
     // are not throttled.

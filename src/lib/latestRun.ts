@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { backoffMs } from "./backoff";
 import type { WorkerRun } from "./freshness";
 import type { Connection } from "./liveStatus";
 import { useSupabase } from "./supabase";
@@ -19,10 +20,14 @@ export function useLatestRun() {
   const supabase = useSupabase();
   const [run, setRun] = useState<WorkerRun | null | undefined>(undefined);
   const [connection, setConnection] = useState<Connection>("connecting");
+  // Bumped to throw the channel away and build a new one after the connection is lost.
+  const [attempt, setAttempt] = useState(0);
+  const failures = useRef(0);
 
   useEffect(() => {
     let cancelled = false;
     let live = false;
+    let retry: ReturnType<typeof setTimeout> | undefined;
 
     async function latest() {
       const { data, error } = await supabase
@@ -49,11 +54,21 @@ export function useLatestRun() {
         console.info(`[realtime] worker_runs ${state} at ${new Date().toLocaleTimeString()}`);
         if (state === "SUBSCRIBED") {
           live = true;
+          failures.current = 0;
           setConnection("live");
           latest(); // catch up on anything missed while disconnected
         } else if (state === "CHANNEL_ERROR" || state === "TIMED_OUT" || state === "CLOSED") {
           live = false;
           setConnection("offline");
+          // The library does not rejoin a channel the server has closed, so build a new
+          // one after a short, growing pause, with a freshly fetched token.
+          if (!retry) {
+            retry = setTimeout(async () => {
+              failures.current += 1;
+              await supabase.realtime.setAuth().catch(() => {});
+              if (!cancelled) setAttempt((n) => n + 1);
+            }, backoffMs(failures.current));
+          }
         }
       });
 
@@ -66,9 +81,10 @@ export function useLatestRun() {
     return () => {
       cancelled = true;
       clearInterval(poll);
+      clearTimeout(retry);
       supabase.removeChannel(channel);
     };
-  }, [supabase]);
+  }, [supabase, attempt]);
 
   return { run, connection };
 }

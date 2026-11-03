@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { backoffMs } from "./backoff";
 import { useSupabase } from "./supabase";
 
 export type StationStatus = {
@@ -37,12 +38,16 @@ export function useLiveStatus(stationIds: string[]) {
   const key = [...new Set(stationIds)].sort().join(",");
   const [status, setStatus] = useState<Map<string, StationStatus>>(new Map());
   const [connection, setConnection] = useState<Connection>("connecting");
+  // Bumped to throw the channel away and build a new one after the connection is lost.
+  const [attempt, setAttempt] = useState(0);
+  const failures = useRef(0);
 
   useEffect(() => {
     if (!key) return;
     const ids = key.split(",");
     let cancelled = false;
     let live = false;
+    let retry: ReturnType<typeof setTimeout> | undefined;
 
     async function snapshot() {
       const { data } = await supabase.from("station_status").select(COLUMNS).in("station_id", ids);
@@ -75,11 +80,21 @@ export function useLiveStatus(stationIds: string[]) {
         console.info(`[realtime] station_status ${state} at ${new Date().toLocaleTimeString()}`);
         if (state === "SUBSCRIBED") {
           live = true;
+          failures.current = 0;
           setConnection("live");
           snapshot();
         } else if (state === "CHANNEL_ERROR" || state === "TIMED_OUT" || state === "CLOSED") {
           live = false;
           setConnection("offline");
+          // The library does not rejoin a channel the server has closed, so build a new
+          // one after a short, growing pause, with a freshly fetched token.
+          if (!retry) {
+            retry = setTimeout(async () => {
+              failures.current += 1;
+              await supabase.realtime.setAuth().catch(() => {});
+              if (!cancelled) setAttempt((n) => n + 1);
+            }, backoffMs(failures.current));
+          }
         }
       });
 
@@ -92,9 +107,10 @@ export function useLiveStatus(stationIds: string[]) {
     return () => {
       cancelled = true;
       clearInterval(poll);
+      clearTimeout(retry);
       supabase.removeChannel(channel);
     };
-  }, [supabase, key]);
+  }, [supabase, key, attempt]);
 
   return { status, connection };
 }

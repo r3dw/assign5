@@ -1,3 +1,5 @@
+import { parseTime } from "./time.ts";
+
 // How current is the data? Decided from the worker's own run log, not from the
 // station data: if few bikes move overnight the data is quiet, not stale.
 
@@ -26,11 +28,19 @@ export function freshness(run: WorkerRun | null | undefined, nowMs: number): Fre
   if (run === undefined) return { state: "loading" };
   if (run === null) return { state: "stale", checkedMs: null };
 
+  const reported = parseTime(run.finished_at ?? run.started_at);
+  // A failure is a failure whatever its timestamp looks like.
+  if (!run.ok) {
+    const failedAt = Number.isNaN(reported) ? nowMs : Math.min(reported, nowMs);
+    return { state: "down", failedMs: nowMs - failedAt, error: run.error };
+  }
+  // A time we cannot read must never look fresh.
+  if (Number.isNaN(reported)) return { state: "stale", checkedMs: null };
+
   // A viewer's clock can run a little behind the server's: never report a time in the future.
-  const at = Math.min(new Date(run.finished_at ?? run.started_at).getTime(), nowMs);
+  const at = Math.min(reported, nowMs);
   const age = nowMs - at;
 
-  if (!run.ok) return { state: "down", failedMs: age, error: run.error };
   if (age > STALE_AFTER_MS) return { state: "stale", checkedMs: at };
   return { state: "fresh", checkedMs: at };
 }

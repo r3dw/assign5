@@ -56,3 +56,21 @@ test("a viewer clock behind the server never reports a check time in the future"
   assert.equal(f.state, "fresh");
   if (f.state === "fresh") assert.ok(f.checkedMs <= NOW);
 });
+
+test("Postgres-style timestamps from Realtime are read correctly", () => {
+  const pg = (s: string) => ({ ...run(0), started_at: s, finished_at: s });
+  const f = freshness(pg("2026-11-03 01:59:45+00"), NOW);
+  assert.equal(f.state, "fresh");
+  if (f.state === "fresh") assert.equal(f.checkedMs, Date.parse("2026-11-03T01:59:45Z"));
+});
+
+test("an unreadable timestamp is stale with no time to show, never fresh or NaN", () => {
+  const f = freshness({ ...run(0), started_at: "garbage", finished_at: null }, NOW);
+  assert.deepEqual(f, { state: "stale", checkedMs: null });
+});
+
+test("a failed run with an unreadable timestamp is still down, with a finite age", () => {
+  const f = freshness({ ...run(0), ok: false, started_at: "garbage", finished_at: null, error: "x" }, NOW);
+  assert.equal(f.state, "down");
+  if (f.state === "down") assert.ok(Number.isFinite(f.failedMs));
+});

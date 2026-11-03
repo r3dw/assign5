@@ -38,11 +38,15 @@ export function useLatestRun() {
 
     const channel = supabase
       .channel(`worker-runs-${Math.random().toString(36).slice(2)}`)
-      .on("postgres_changes", { event: "INSERT", schema: "public", table: "worker_runs" }, (payload) => {
-        setRun(payload.new as WorkerRun);
+      // The message only says "a new run exists". The row itself is read over normal
+      // HTTP, because Realtime passes raw Postgres text (odd timestamp format) and can
+      // omit columns, and a half-read run must never turn the banner red.
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "worker_runs" }, () => {
+        latest();
       })
       .subscribe((state) => {
         if (cancelled) return;
+        console.info(`[realtime] worker_runs ${state} at ${new Date().toLocaleTimeString()}`);
         if (state === "SUBSCRIBED") {
           live = true;
           setConnection("live");

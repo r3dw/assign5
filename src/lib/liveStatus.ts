@@ -62,11 +62,17 @@ export function useLiveStatus(stationIds: string[]) {
         (payload) => {
           if (payload.eventType === "DELETE") return;
           const row = payload.new as StationStatus;
+          // If the message is missing columns, trust the database instead.
+          if (typeof row?.station_id !== "string" || typeof row.bikes_available !== "number" || typeof row.docks_available !== "number") {
+            snapshot();
+            return;
+          }
           setStatus((prev) => new Map(prev).set(row.station_id, row));
         },
       )
       .subscribe((state) => {
         if (cancelled) return;
+        console.info(`[realtime] station_status ${state} at ${new Date().toLocaleTimeString()}`);
         if (state === "SUBSCRIBED") {
           live = true;
           setConnection("live");

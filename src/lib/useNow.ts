@@ -14,6 +14,7 @@ export function useNow(intervalMs = 1000): number {
 
 /** "just now", "42 s ago", "5 min ago", "2 h ago". */
 export function ago(fromMs: number, nowMs: number): string {
+  if (!Number.isFinite(fromMs)) return "a while ago";
   const s = Math.max(0, Math.round((nowMs - fromMs) / 1000));
   if (s < 5) return "just now";
   if (s < 60) return `${s} s ago`;

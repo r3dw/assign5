@@ -1,6 +1,7 @@
 "use client";
 
 import type { StationStatus } from "@/lib/liveStatus";
+import { parseTime } from "@/lib/time";
 import { ago } from "@/lib/useNow";
 
 type Props = {
@@ -14,7 +15,7 @@ type Props = {
 
 /** A number that briefly highlights when its station has just changed. */
 function Figure({ value, changedAt, now }: { value: number; changedAt: string; now: number }) {
-  const justChanged = now - new Date(changedAt).getTime() < 5000;
+  const justChanged = now - parseTime(changedAt) < 5000;
   return (
     <span
       className={`inline-block rounded px-1.5 text-2xl font-semibold tabular-nums transition-colors duration-1000 ${
@@ -64,7 +65,7 @@ function Side({
             {warning}
           </p>
         )}
-        <p className="text-xs text-zinc-500">Changed {ago(new Date(status.updated_at).getTime(), now)}</p>
+        <p className="text-xs text-zinc-500">Changed {ago(parseTime(status.updated_at), now)}</p>
       </>
     );
   }

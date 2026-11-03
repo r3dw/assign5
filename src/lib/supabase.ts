@@ -28,6 +28,10 @@ let client: SupabaseClient | undefined;
 function getClient(): SupabaseClient {
   client ??= createClient(process.env.NEXT_PUBLIC_SUPABASE_URL!, process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!, {
     accessToken: async () => (await currentSession?.getToken()) ?? null,
+    // Browsers throttle timers in background tabs, which can delay the websocket's
+    // keep-alive pings until the server closes the connection. A Web Worker's timers
+    // are not throttled.
+    realtime: { worker: true },
   });
   return client;
 }

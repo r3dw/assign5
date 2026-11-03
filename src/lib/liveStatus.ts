@@ -42,6 +42,7 @@ export function useLiveStatus(stationIds: string[]) {
     if (!key) return;
     const ids = key.split(",");
     let cancelled = false;
+    let live = false;
 
     async function snapshot() {
       const { data } = await supabase.from("station_status").select(COLUMNS).in("station_id", ids);
@@ -67,15 +68,24 @@ export function useLiveStatus(stationIds: string[]) {
       .subscribe((state) => {
         if (cancelled) return;
         if (state === "SUBSCRIBED") {
+          live = true;
           setConnection("live");
           snapshot();
         } else if (state === "CHANNEL_ERROR" || state === "TIMED_OUT" || state === "CLOSED") {
+          live = false;
           setConnection("offline");
         }
       });
 
+    // Fallback: while the websocket is down, read the numbers over plain HTTP so they
+    // never freeze. This costs no Realtime messages.
+    const poll = setInterval(() => {
+      if (!live) snapshot();
+    }, 20_000);
+
     return () => {
       cancelled = true;
+      clearInterval(poll);
       supabase.removeChannel(channel);
     };
   }, [supabase, key]);

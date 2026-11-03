@@ -22,6 +22,7 @@ export function useLatestRun() {
 
   useEffect(() => {
     let cancelled = false;
+    let live = false;
 
     async function latest() {
       const { data, error } = await supabase
@@ -43,15 +44,24 @@ export function useLatestRun() {
       .subscribe((state) => {
         if (cancelled) return;
         if (state === "SUBSCRIBED") {
+          live = true;
           setConnection("live");
           latest(); // catch up on anything missed while disconnected
         } else if (state === "CHANNEL_ERROR" || state === "TIMED_OUT" || state === "CLOSED") {
+          live = false;
           setConnection("offline");
         }
       });
 
+    // Fallback: while the websocket is down, read the run log over plain HTTP so the
+    // freshness banner stays truthful. This costs no Realtime messages.
+    const poll = setInterval(() => {
+      if (!live) latest();
+    }, 20_000);
+
     return () => {
       cancelled = true;
+      clearInterval(poll);
       supabase.removeChannel(channel);
     };
   }, [supabase]);

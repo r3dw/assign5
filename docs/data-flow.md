@@ -8,7 +8,7 @@ Source: Divvy station status (GBFS), polled by the worker every 30 seconds.
 flowchart LR
     SRC["<b>Data source</b><br/>Divvy GBFS<br/>station_status.json<br/>2,079 stations, refreshed ~60 s"]
     CRON["<b>Supabase Cron</b><br/>every 30 s"]
-    W["<b>Worker</b><br/>Edge Function (Deno)<br/>fetch, compare, upsert changed rows only"]
+    W["<b>Worker</b><br/>Edge Function (Deno)<br/>fetch, send all rows to the database,<br/>which saves only the changed ones"]
     DB[("<b>Supabase Postgres</b><br/>stations<br/>station_status<br/>worker_runs<br/>follows (RLS)")]
     RT["<b>Supabase Realtime</b><br/>row changes pushed<br/>to open pages"]
     PAGE["<b>Page</b><br/>Next.js + Tailwind on Vercel<br/>live station cards,<br/>freshness banner"]
@@ -29,8 +29,8 @@ flowchart LR
 | From | To | What | Notes |
 | --- | --- | --- | --- |
 | Divvy | Worker | Full status for every station: bikes, e-bikes, docks, disabled counts, renting/returning flags | The worker ignores `last_reported`, which changes on about 1,100 stations per poll when only about 120 really changed |
-| Cron | Worker | An authenticated HTTP call every 30 s | About 86,000 calls a month, under the 500,000 free limit |
-| Worker | Database | Upserts of only the stations whose counts or flags changed, plus one `worker_runs` row per run | Uses the Supabase secret key, which never goes in code |
+| Cron | Worker | An HTTP call every 30 s carrying a random secret from Vault, which the database checks (`cron_secret_ok`) | Calls without it get a 403. About 86,000 calls a month, under the 500,000 free limit. |
+| Worker | Database | All ~2,000 stations in one call to `apply_station_status()`, which writes only the rows whose counts or flags changed, plus one `worker_runs` row per run | The comparison runs inside Postgres, so the worker never has to read the old rows. Uses the service role key that Supabase gives the function on its own servers. |
 | Database | Realtime | Row changes on `station_status` | Needs the table in the Realtime publication, read access granted, and an RLS policy letting a signed-in user read it |
 | Realtime | Page | Changes pushed over a websocket | The page filters to the stations the user follows |
 | Page | Database | The user's follows (read, add, remove) | RLS: a user sees and changes only their own rows |

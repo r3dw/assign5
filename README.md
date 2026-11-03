@@ -111,7 +111,7 @@ All 36 run offline in under a second.
 | `src/lib/time.test.ts` (4) | Reads both the ISO and the Postgres text timestamp forms |
 | `src/lib/backoff.test.ts` (2) | The reconnect wait doubles from 1 s to a 30 s cap |
 
-**Not covered by automated tests:** the Deno entry point `index.ts`, the React components, Clerk sign-in, and Realtime itself. The SQL function `apply_station_status()` and the row-level security policies were tested by hand in the database (rolled-back transactions acting as each role), not by a repeatable test. The page was checked by hand on the deployed site.
+**Not covered by automated tests:** the Deno entry point `index.ts`, the React components, Clerk sign-in, and Realtime itself. The SQL function `apply_station_status()` and the row-level security policies were tested by hand in the database (rolled-back transactions acting as each role), not by a repeatable test. The page was checked by hand on the deployed site, in Safari, Chrome and Firefox on a Mac.
 
 ## What the testing and logs showed
 
@@ -141,7 +141,7 @@ Signed-out visitors are refused everywhere on purpose: a public link would let a
 - Divvy updates its feed about once a minute, so changes cannot appear faster than that.
 - Followed trips are stations only. A "near me" or neighborhood view is not built.
 - Each user can follow at most 20 trips.
-- Not tested: other browsers, screen readers, or many simultaneous users.
+- Tested in Safari, Chrome and Firefox on a Mac, and with two signed-in users at once. Not tested: Windows, Linux, phones or tablets, screen readers, or more than two simultaneous users.
 
 ## How this was built
 

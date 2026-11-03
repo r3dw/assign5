@@ -1,7 +1,7 @@
 "use client";
 
 import { Show } from "@clerk/nextjs";
-import { ConnectionCheck } from "./ConnectionCheck";
+import { Trips } from "./Trips";
 
 export function Home() {
   return (
@@ -19,7 +19,7 @@ export function Home() {
       </Show>
 
       <Show when="signed-in">
-        <ConnectionCheck />
+        <Trips />
       </Show>
     </main>
   );

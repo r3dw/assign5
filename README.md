@@ -95,7 +95,7 @@ The Supabase secret (service role) key is never in this repo or on Vercel. Supab
 
 | Command | What it does |
 | --- | --- |
-| `npm test` | Runs the 36 tests with Node's built-in runner, no extra packages |
+| `npm test` | Runs the 41 tests with Node's built-in runner, no extra packages |
 | `npm run lint` | ESLint |
 | `npm run build` | Production build, including the TypeScript check |
 
@@ -110,7 +110,7 @@ The Supabase secret (service role) key is never in this repo or on Vercel. Supab
 
 ## Tests: what they check, and what they do not
 
-All 36 run offline in under a second.
+All 41 run offline in under a second.
 
 | File | Checks |
 | --- | --- |
@@ -119,6 +119,7 @@ All 36 run offline in under a second.
 | `src/lib/token.test.ts` (6) | Reads token expiry; refreshes a token with under 40 s left |
 | `src/lib/time.test.ts` (4) | Reads both the ISO and the Postgres text timestamp forms |
 | `src/lib/backoff.test.ts` (2) | The reconnect wait doubles from 1 s to a 30 s cap |
+| `src/lib/tripView.test.ts` (5) | The return-trip swap: pick-up and drop-off trade places, a one-way trip has no return leg, the saved trip is never changed |
 
 **Not covered by automated tests:** the Deno entry point `index.ts`, the React components, Clerk sign-in, and Realtime itself. The SQL function `apply_station_status()` and the row-level security policies were tested by hand in the database (rolled-back transactions acting as each role), not by a repeatable test. The page was checked by hand on the deployed site, in Safari, Chrome and Firefox on a Mac.
 
@@ -156,7 +157,7 @@ Signed-out visitors are refused everywhere on purpose: a public link would let a
 
 - Clerk is on a **development instance**, so its console shows a development-keys warning, and Safari may log a one-time cross-site fetch error at page load. Production would need your own domain.
 - Divvy updates its feed about once a minute, so changes cannot appear faster than that.
-- Followed trips are stations only. A "near me" or neighborhood view is not built.
+- A trip with a destination has a **Return trip** button that swaps pick-up and drop-off for display, so one saved trip covers both directions. It is not saved, so a reload shows the original direction. Followed trips are stations only. A "near me" or neighborhood view is not built.
 - Each user can follow at most 20 trips.
 - Tested in Safari, Chrome and Firefox on a Mac, and with two signed-in users at once. Not tested: Windows, Linux, phones or tablets, screen readers, or more than two simultaneous users.
 

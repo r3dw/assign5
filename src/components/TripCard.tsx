@@ -13,6 +13,10 @@ type Props = {
   now: number;
   removeLabel: string;
   onRemove: () => void;
+  /** true when the card is showing the return leg of the trip */
+  reversed: boolean;
+  /** absent for a trip with no destination, which has no return leg */
+  onReverse?: () => void;
 };
 
 /** A docking post, for the "Drop off" label. */
@@ -94,9 +98,14 @@ function Side({
   );
 }
 
-export function TripCard({ origin, destination, originStatus, destinationStatus, now, removeLabel, onRemove }: Props) {
+export function TripCard({ origin, destination, originStatus, destinationStatus, now, removeLabel, onRemove, reversed, onReverse }: Props) {
   return (
     <li className="card border-l-4 border-l-sky p-5 text-sm">
+      {reversed && (
+        <p className="mb-3 inline-block rounded-full bg-sky/20 px-3 py-0.5 text-xs font-bold uppercase tracking-wider text-brand">
+          <span aria-hidden="true">⇄ </span>Return trip
+        </p>
+      )}
       <div className="grid gap-5 sm:grid-cols-2">
         <Side heading="Pick up" name={origin} status={originStatus} now={now} kind="bikes" />
         {destination ? (
@@ -105,7 +114,21 @@ export function TripCard({ origin, destination, originStatus, destinationStatus,
           <p className="self-center text-muted">No destination chosen.</p>
         )}
       </div>
-      <div className="mt-4 text-right">
+      <div className="mt-4 flex items-center justify-between gap-3">
+        {onReverse ? (
+          <button
+            type="button"
+            onClick={onReverse}
+            aria-pressed={reversed}
+            aria-label={reversed ? "Show the original direction of this trip" : "Show the return trip"}
+            className="btn-secondary px-3 py-1.5"
+          >
+            <span aria-hidden="true">⇄ </span>
+            {reversed ? "Show original direction" : "Show return trip"}
+          </button>
+        ) : (
+          <span />
+        )}
         <button
           type="button"
           onClick={onRemove}

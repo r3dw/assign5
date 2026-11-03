@@ -101,7 +101,7 @@ The Supabase secret (service role) key is never in this repo or on Vercel. Supab
 
 ## Design
 
-- **Colours:** the Chicago flag's sky blue and red, with a deeper blue for buttons and links so white text on them stays readable. The header carries the flag's two blue stripes with red six-pointed stars, and faint line-drawn bicycles sit behind the page. Light and dark themes follow the system setting.
+- **Colours:** the Chicago flag's sky blue and red, with a deeper blue for buttons and links so white text on them stays readable. The header carries the flag's two blue stripes with its four red stars, drawn in the flag's own proportions (six long, narrow points), and faint line-drawn bicycles sit behind the page. Light and dark themes follow the system setting.
 - **Live data needs clear states.** Fresh, stale and down each have their own wording and icon, and the cards dim when the numbers may be old, so a stale number never looks as trustworthy as a live one. A number that has just changed is highlighted for five seconds, so a change catches the eye.
 - **Colour is never the only signal.** Every state and warning also has words or an icon ("▲ These numbers may be out of date", "No open docks. The station is full.").
 - **Contrast:** every text and background pair in both themes was checked against the WCAG AA standard (4.5:1). The lowest in light mode is the amber warning, at 5.0:1.

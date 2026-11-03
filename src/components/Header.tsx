@@ -3,14 +3,14 @@
 import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/nextjs";
 import { BikeMark, FlagStar } from "./BikeSketch";
 
-/** The Chicago flag's pattern in miniature: two sky-blue stripes with red six-pointed stars between them. */
+/** The Chicago flag's pattern in miniature: two sky-blue stripes with the flag's four red stars between them. */
 function FlagBand() {
   return (
     <div aria-hidden="true">
       <div className="h-1.5 bg-sky" />
-      <div className="flex h-6 items-center justify-center gap-10 bg-surface sm:gap-16">
+      <div className="flex h-8 items-center justify-center gap-10 bg-surface sm:gap-16">
         {[0, 1, 2, 3].map((i) => (
-          <FlagStar key={i} className="h-4 w-4 text-flag-red" />
+          <FlagStar key={i} className="h-6 w-6 text-flag-red" />
         ))}
       </div>
       <div className="h-1.5 bg-sky" />

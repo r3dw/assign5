@@ -96,12 +96,16 @@ export function BikeMark({ className = "" }: { className?: string }) {
   );
 }
 
-/** Six-pointed star, as on the Chicago flag. */
+/**
+ * The Chicago flag's star: six long, narrow points, with the notches between them cut in
+ * deep (the inner radius is 0.37 of the outer, measured from the flag itself). Do not
+ * replace it with two overlapping equilateral triangles: that is a different shape with
+ * unrelated meanings, and it is not the Chicago flag's star.
+ */
 export function FlagStar({ className = "" }: { className?: string }) {
   return (
     <svg viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" focusable="false" className={className}>
-      <polygon points="10,1 18.66,16 1.34,16" />
-      <polygon points="10,19 1.34,4 18.66,4" />
+      <polygon points="10.00,0.40 11.77,6.93 18.31,5.20 13.55,10.00 18.31,14.80 11.77,13.07 10.00,19.60 8.23,13.07 1.69,14.80 6.45,10.00 1.69,5.20 8.23,6.93" />
     </svg>
   );
 }

@@ -126,12 +126,20 @@ All 36 run offline in under a second.
 
 ## Free-tier limits
 
-| Service | Limit that matters | Where this app stands |
-| --- | --- | --- |
-| Supabase Edge Functions | 500,000 calls a month | A 30 s schedule is about 86,000 |
-| Supabase Realtime | Every message sent to every open page counts | Subscriptions are filtered to followed stations. The run log sends each open tab about 2 messages a minute. |
-| Supabase project | Paused after a week without use | Open the app now and then until grades are back |
-| Clerk, Vercel | Free development and Hobby plans | No payment method on any service |
+Every service is on its free plan, and no payment method is on file with any of them (checked in each dashboard).
+
+**There is no spending limit to set.** On free plans, going over a limit gets the service restricted, not charged. Supabase's own usage page says so: "you may experience restrictions, as you are currently not billed for overages." Vercel Hobby and Clerk's free tier work the same way.
+
+| Service | Plan | Limit that matters | Where this app stands (read from the dashboards on 2026-11-03) |
+| --- | --- | --- | --- |
+| Supabase Edge Functions | Free | 500,000 calls a month (per the course brief) | 1,637 calls so far. A 30 s schedule is about 86,000 a month, 17% of the limit. |
+| Supabase Realtime | Free | Every message to every open page counts, and there are caps on connections and monthly messages | Peak concurrent connections: 3. Messages: 144. Subscriptions are filtered to followed stations, and the run log sends each open tab about 2 messages a minute. |
+| Supabase database | Free | 500 MB (per Supabase's published free plan) | 0.032 GB. A daily job deletes `worker_runs` rows older than 3 days. |
+| Supabase project | Free | Paused after a week without use | Open the app now and then until grades are back |
+| Vercel | Hobby | Data transfer, requests and function use | 166.78 MB data transfer and 4.3K requests over the last 30 days, far below the limits |
+| Clerk | Free ("Hobby") | Monthly active users | 2 active users; usage far below the limit |
+
+Usage figures were read from each service's own usage page. Supabase's page can lag by up to an hour, so the call count differs a little from the count I took from its logs (1,691 over the first 14 hours).
 
 Signed-out visitors are refused everywhere on purpose: a public link would let anyone open Realtime connections against the free project.
 

@@ -38,6 +38,9 @@ let inFlight: Promise<string | null> | undefined;
  * Only whether the token changed or went missing is logged, never the token itself.
  */
 function clerkToken(): Promise<string | null> {
+  // Signed out: no token. Supabase then uses its public (anon) key, which can read the
+  // shared live data but nothing private.
+  if (!currentSession) return Promise.resolve(null);
   const exp = lastToken ? jwtExpiry(lastToken) : null;
   if (lastToken && !needsRefresh(exp, Date.now() / 1000, REFRESH_MARGIN_SECONDS)) {
     return Promise.resolve(lastToken);

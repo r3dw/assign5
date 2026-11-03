@@ -11,7 +11,8 @@ The data-flow chart is `docs/data-flow.md`. Read it before changing the pipeline
 ## Stack
 
 - Next.js (App Router), React, TypeScript, Tailwind CSS. Page on Vercel Hobby (free).
-- Clerk for sign-in, linked to Supabase as third-party auth, so RLS can read the Clerk user id.
+- Clerk for sign-in (email and a one-time code only, passwords are disabled), linked to Supabase as third-party auth, so RLS can read the Clerk user id.
+- Signed-out visitors can watch live data (stations, station_status and worker_runs are readable by anon); only saving trips (`follows`) needs an account.
 - Supabase: Postgres, Realtime, Cron, and the worker as an Edge Function in `supabase/functions/` (Deno, TypeScript).
 - `tsconfig.json` excludes `supabase`, because the Edge Function code is Deno, not Node, and the Next.js build would fail on it.
 

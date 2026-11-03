@@ -10,6 +10,7 @@ type Props = {
   originStatus: StationStatus | undefined;
   destinationStatus: StationStatus | undefined;
   now: number;
+  removeLabel: string;
   onRemove: () => void;
 };
 
@@ -79,7 +80,7 @@ function Side({
   );
 }
 
-export function TripCard({ origin, destination, originStatus, destinationStatus, now, onRemove }: Props) {
+export function TripCard({ origin, destination, originStatus, destinationStatus, now, removeLabel, onRemove }: Props) {
   return (
     <li className="rounded-md border border-zinc-200 p-4 text-sm dark:border-zinc-800">
       <div className="grid gap-4 sm:grid-cols-2">
@@ -94,7 +95,7 @@ export function TripCard({ origin, destination, originStatus, destinationStatus,
         <button
           type="button"
           onClick={onRemove}
-          aria-label={`Stop following the trip from ${origin}`}
+          aria-label={`${removeLabel} the trip from ${origin}`}
           className="text-zinc-500 underline hover:text-zinc-800 dark:hover:text-zinc-200"
         >
           Remove

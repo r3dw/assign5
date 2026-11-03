@@ -20,7 +20,7 @@ flowchart LR
     W -- "one row per run:<br/>time, ok/failed, rows changed" --> DB
     DB -- "changes on followed stations" --> RT
     RT -- "websocket" --> PAGE
-    PAGE -- "initial load, add/remove follows<br/>(anon key + Clerk token, RLS)" --> DB
+    PAGE -- "initial load, add/remove follows<br/>(Clerk token, RLS)" --> DB
     CLERK -- "user id in token" --> PAGE
 ```
 
@@ -31,7 +31,7 @@ flowchart LR
 | Divvy | Worker | Full status for every station: bikes, e-bikes, docks, disabled counts, renting/returning flags | The worker ignores `last_reported`, which changes on about 1,100 stations per poll when only about 120 really changed |
 | Cron | Worker | An HTTP call every 30 s carrying a random secret from Vault, which the database checks (`cron_secret_ok`) | Calls without it get a 403. About 86,000 calls a month, under the 500,000 free limit. |
 | Worker | Database | All ~2,000 stations in one call to `apply_station_status()`, which writes only the rows whose counts or flags changed, plus one `worker_runs` row per run | The comparison runs inside Postgres, so the worker never has to read the old rows. Uses the service role key that Supabase gives the function on its own servers. |
-| Database | Realtime | Row changes on `station_status` | Needs the table in the Realtime publication, read access granted, and an RLS policy letting a signed-in user read it |
+| Database | Realtime | Row changes on `station_status` | Needs the table in the Realtime publication, read access granted, and an RLS policy letting the reader see it. Readers are anyone, signed in or not, because the live data is public Divvy data |
 | Realtime | Page | Changes pushed over a websocket | The page filters to the stations the user follows |
 | Page | Database | The user's follows (read, add, remove) | RLS: a user sees and changes only their own rows |
 
@@ -39,10 +39,17 @@ flowchart LR
 
 | Table | Holds | Who writes | Who reads |
 | --- | --- | --- | --- |
-| `stations` | Name, lat/lon, capacity (changes rarely) | Worker, on first run and occasionally after | Signed-in users |
-| `station_status` | Current bikes, e-bikes, docks, disabled, renting/returning, `updated_at` | Worker | Signed-in users, and Realtime |
+| `stations` | Name, lat/lon, capacity (changes rarely) | Worker, on first run and occasionally after | Anyone, signed in or not |
+| `station_status` | Current bikes, e-bikes, docks, disabled, renting/returning, `updated_at` | Worker | Anyone, signed in or not, and Realtime |
 | `worker_runs` | When each run happened, success or failure, rows changed, error message | Worker | Page, for the freshness states |
-| `follows` | A user's followed trip: an origin station, and optionally a destination station | The user | Only that user (RLS on the Clerk user id) |
+| `follows` | A user's followed trip: an origin station, and optionally a destination station | The user | Only that user (RLS on the Clerk user id). Signed-out visitors have no access at all. |
+
+## Signed out and signed in
+
+| | Can do |
+| --- | --- |
+| Anyone (no account) | Search stations and watch up to 3 trips live. They exist only in that browser tab and are not saved. Reads the public tables with Supabase's public (anon) key. |
+| Signed in (Clerk, email and a one-time code, no password) | Everything above, plus saving trips, which are private to the account. Reads and writes `follows` with the Clerk token. |
 
 ## Follows: origin and optional destination
 

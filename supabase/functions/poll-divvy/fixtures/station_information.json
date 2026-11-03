@@ -1,0 +1,932 @@
+{
+ "data": {
+  "stations": [
+   {
+    "station_id": "a3b23785-a135-11e9-9cda-0a87ae2ba916",
+    "name": "Ashland Ave & 63rd St",
+    "short_name": "CHI00682",
+    "lon": -87.664843,
+    "lat": 41.779374,
+    "capacity": 11,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "a3b23785-a135-11e9-9cda-0a87ae2ba916",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "a3a528d0-a135-11e9-9cda-0a87ae2ba916",
+    "name": "Stony Island Ave & 64th St",
+    "short_name": "CHI00557",
+    "lon": -87.586647,
+    "lat": 41.778881,
+    "capacity": 11,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "a3a528d0-a135-11e9-9cda-0a87ae2ba916",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2207048336540083862",
+    "name": "Central Park Ave & Ohio St",
+    "short_name": "CHI02247",
+    "lon": -87.71644,
+    "lat": 41.89188,
+    "capacity": 8,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "2207048336540083862",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "1933998036428004326",
+    "name": "Lawndale Ave & 30th St",
+    "short_name": "CHI01882",
+    "lon": -87.7168955,
+    "lat": 41.8389124,
+    "capacity": 7,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "1933998036428004326",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2214504720540875974",
+    "name": "Troy St & Grace St",
+    "short_name": "CHI02322",
+    "lon": -87.70627,
+    "lat": 41.95024,
+    "capacity": 8,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "2214504720540875974",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "1978857650118994914",
+    "name": "Indiana Ave & 133rd St",
+    "short_name": "CHI01933",
+    "lon": -87.61719,
+    "lat": 41.6538,
+    "capacity": 8,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "1978857650118994914",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2170354014030504722",
+    "name": "Albany Ave & 16th St",
+    "short_name": "CHI02186",
+    "lon": -87.70302,
+    "lat": 41.85932,
+    "capacity": 8,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "2170354014030504722",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "1963673207600511026",
+    "name": "Wabash Ave & 49th St",
+    "short_name": "CHI01987",
+    "lon": -87.6245,
+    "lat": 41.80581,
+    "capacity": 15,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "1963673207600511026",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2245646187730700376",
+    "name": "South Boulevard CTA",
+    "short_name": "CHI02386",
+    "lon": -87.6781649,
+    "lat": 42.0274991,
+    "region_id": "35",
+    "capacity": 8,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "2245646187730700376",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "1970688521031469268",
+    "name": "Martin Luther King Dr & 87th St",
+    "short_name": "CHI01973",
+    "lon": -87.61439,
+    "lat": 41.73677,
+    "capacity": 15,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "1970688521031469268",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2246051588008437124",
+    "name": "Evanston Civic Center",
+    "short_name": "CHI02388",
+    "lon": -87.686482,
+    "lat": 42.057127,
+    "region_id": "35",
+    "capacity": 8,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "2246051588008437124",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "1975534406854476324",
+    "name": "Baltimore Ave & 133rd St",
+    "short_name": "CHI01947",
+    "lon": -87.54703,
+    "lat": 41.65349,
+    "capacity": 16,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "1975534406854476324",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "1961472602929588766",
+    "name": "Long Ave & Diversey Ave",
+    "short_name": "CHI01932",
+    "lon": -87.76124,
+    "lat": 41.93104,
+    "capacity": 7,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "1961472602929588766",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "a3b0fae6-a135-11e9-9cda-0a87ae2ba916",
+    "name": "Glenwood Ave & Touhy Ave",
+    "short_name": "CHI01143",
+    "lon": -87.666058,
+    "lat": 42.012701,
+    "capacity": 15,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "a3b0fae6-a135-11e9-9cda-0a87ae2ba916",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2128788290981175550",
+    "name": "Dearborn St & Maple St",
+    "short_name": "CHI02124",
+    "lon": -87.63026,
+    "lat": 41.90192,
+    "capacity": 19,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "2128788290981175550",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2270318543790283704",
+    "name": "Broadway & Glenlake Ave  ",
+    "short_name": "CHI02429",
+    "lon": -87.65984,
+    "lat": 41.99235,
+    "capacity": 15,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "2270318543790283704",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "a3addda0-a135-11e9-9cda-0a87ae2ba916",
+    "name": "Kedzie Ave & 24th St",
+    "short_name": "CHI00534",
+    "lon": -87.705412,
+    "lat": 41.848193,
+    "capacity": 11,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "a3addda0-a135-11e9-9cda-0a87ae2ba916",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2212612309299256224",
+    "name": "Cottage Grove Ave & 107th St",
+    "short_name": "CHI02260",
+    "lon": -87.60793,
+    "lat": 41.70015,
+    "capacity": 8,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "2212612309299256224",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "a3a62566-a135-11e9-9cda-0a87ae2ba916",
+    "name": "Mies van der Rohe Way & Chestnut St",
+    "short_name": "CHI00418",
+    "lon": -87.6219152258,
+    "lat": 41.8985866514,
+    "capacity": 19,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "a3a62566-a135-11e9-9cda-0a87ae2ba916",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "a3b4399a-a135-11e9-9cda-0a87ae2ba916",
+    "name": "Smith Park",
+    "short_name": "CHI01237",
+    "lon": -87.689397,
+    "lat": 41.892048,
+    "capacity": 15,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "a3b4399a-a135-11e9-9cda-0a87ae2ba916",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "a3a97a01-a135-11e9-9cda-0a87ae2ba916",
+    "name": "Cottage Grove Ave & Oakwood Blvd",
+    "short_name": "CHI00400",
+    "lon": -87.6071,
+    "lat": 41.822985,
+    "capacity": 15,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "a3a97a01-a135-11e9-9cda-0a87ae2ba916",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "a3b1d532-a135-11e9-9cda-0a87ae2ba916",
+    "name": "Austin Blvd & Madison St",
+    "short_name": "CHI00596",
+    "lon": -87.774453,
+    "lat": 41.880281,
+    "capacity": 11,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "a3b1d532-a135-11e9-9cda-0a87ae2ba916",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "a3b222fc-a135-11e9-9cda-0a87ae2ba916",
+    "name": "Racine Ave & Garfield Blvd",
+    "short_name": "CHI01166",
+    "lon": -87.655073,
+    "lat": 41.794228,
+    "capacity": 11,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "a3b222fc-a135-11e9-9cda-0a87ae2ba916",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "1799277526470631980",
+    "name": "Lincoln Ave & Byron St",
+    "short_name": "CHI01879",
+    "lon": -87.677296,
+    "lat": 41.952372,
+    "capacity": 15,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "1799277526470631980",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2130026180535114202",
+    "name": "Milwaukee Ave & Armitage Ave",
+    "short_name": "CHI02131",
+    "lon": -87.68864,
+    "lat": 41.91771,
+    "capacity": 11,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "2130026180535114202",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2020809814916515864",
+    "name": "Menard Ave & Milwaukee Ave",
+    "short_name": "CHI02003",
+    "lon": -87.77331,
+    "lat": 41.98139,
+    "capacity": 8,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "2020809814916515864",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "a3a8804b-a135-11e9-9cda-0a87ae2ba916",
+    "name": "Ravenswood Ave & Irving Park Rd",
+    "short_name": "CHI00309",
+    "lon": -87.67393,
+    "lat": 41.95469,
+    "capacity": 19,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "a3a8804b-a135-11e9-9cda-0a87ae2ba916",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "1975902497437067330",
+    "name": "Homan Ave & 26th St",
+    "short_name": "CHI01854",
+    "lon": -87.70983,
+    "lat": 41.84425,
+    "capacity": 15,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "1975902497437067330",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "1942117929887056608",
+    "name": "Meade Ave & Diversey Ave",
+    "short_name": "CHI01840",
+    "lon": -87.77845,
+    "lat": 41.93086,
+    "capacity": 15,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "1942117929887056608",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "1867616662773391950",
+    "name": "Karlov Ave & Armitage Ave",
+    "short_name": "CHI01825",
+    "lon": -87.728952,
+    "lat": 41.91748,
+    "capacity": 15,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "1867616662773391950",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2213358698360523876",
+    "name": "Homan Ave & Fillmore St",
+    "short_name": "CHI02262",
+    "lon": -87.71085,
+    "lat": 41.86811,
+    "capacity": 8,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "2213358698360523876",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2186308443416755100",
+    "name": "Homan Ave & 65th St",
+    "short_name": "CHI02205",
+    "lon": -87.70811,
+    "lat": 41.77519,
+    "capacity": 8,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "2186308443416755100",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2010820263334840794",
+    "name": "Panama Ave & Grace St",
+    "short_name": "CHI01891",
+    "lon": -87.82925,
+    "lat": 41.94766,
+    "capacity": 11,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "2010820263334840794",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2209666353179784114",
+    "name": "Central Park Ave & Augusta Blvd",
+    "short_name": "CHI02250",
+    "lon": -87.71649,
+    "lat": 41.89894,
+    "capacity": 8,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "2209666353179784114",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2131429867387521772",
+    "name": "Damen Ave & Wabansia Ave",
+    "short_name": "CHI02133",
+    "lon": -87.67722,
+    "lat": 41.91225,
+    "capacity": 11,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "2131429867387521772",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2246215988797035830",
+    "name": "Bent Park",
+    "short_name": "CHI02390",
+    "lon": -87.724011,
+    "lat": 42.064494,
+    "region_id": "35",
+    "capacity": 6,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "2246215988797035830",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "1929967657204564894",
+    "name": "Kedvale Ave & Peterson Ave",
+    "short_name": "CHI01905",
+    "lon": -87.7317073,
+    "lat": 41.9900762,
+    "capacity": 15,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "1929967657204564894",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "a3a75d8a-a135-11e9-9cda-0a87ae2ba916",
+    "name": "State St & 35th St",
+    "short_name": "CHI00343",
+    "lon": -87.62679755687714,
+    "lat": 41.8310363140161,
+    "capacity": 15,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "a3a75d8a-a135-11e9-9cda-0a87ae2ba916",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "a3a854bf-a135-11e9-9cda-0a87ae2ba916",
+    "name": "Sedgwick St & Schiller St",
+    "short_name": "CHI00303",
+    "lon": -87.638566,
+    "lat": 41.907626,
+    "capacity": 15,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": true,
+    "station_type": "classic",
+    "external_id": "a3a854bf-a135-11e9-9cda-0a87ae2ba916",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   },
+   {
+    "station_id": "2197048925058850020",
+    "name": "Woodlawn Ave & 103rd St",
+    "short_name": "CHI02221",
+    "lon": -87.59404,
+    "lat": 41.70738,
+    "capacity": 4,
+    "rental_uris": {
+     "android": "https://chi.lft.to/lastmile_qr_scan",
+     "ios": "https://chi.lft.to/lastmile_qr_scan"
+    },
+    "rental_methods": [
+     "KEY",
+     "CREDITCARD",
+     "TRANSITCARD"
+    ],
+    "has_kiosk": false,
+    "station_type": "classic",
+    "external_id": "2197048925058850020",
+    "electric_bike_surcharge_waiver": false,
+    "eightd_station_services": [],
+    "eightd_has_key_dispenser": false
+   }
+  ]
+ },
+ "last_updated": 1793654824,
+ "ttl": 60,
+ "version": "1.1"
+}
